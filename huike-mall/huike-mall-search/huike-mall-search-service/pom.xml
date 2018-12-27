@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -9,20 +10,157 @@
 	</parent>
 	<artifactId>huike-mall-search-service</artifactId>
 	<packaging>war</packaging>
+
 	<dependencies>
+
+		<!-- Spring ioc 依赖包 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+		</dependency>
+
+		<!-- spring MVC 依赖包 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<!-- dubbo依赖start -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+		<!-- dubbo依赖end -->
+
+		<!-- log4j2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+		</dependency>
+
+		<!-- jstl（使用Tomcat插件时scope需设置为compile，编译到生产环境时scope设置为provide即可） -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.kkb.learn</groupId>
 			<artifactId>huike-mall-common-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.kkb.learn</groupId>
+			<artifactId>huike-mall-common-utils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.kkb.learn</groupId>
+			<artifactId>huike-mall-search-interface</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- 清理 -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+			</plugin>
+
+			<!-- 编译 -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<!-- 发布构件 -->
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+			</plugin>
+
+			<!-- 安装构件 -->
+			<plugin>
+				<artifactId>maven-install-plugin</artifactId>
+			</plugin>
+
+			<!-- 打包 -->
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+
+			<!-- 资源文件 -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+
+			<!-- 单元测试 -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+
+			<!-- tomcat7插件
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<port>8180</port>
+					<path>/</path>
+				</configuration>
+			</plugin>
+			 -->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>searchservice</warName>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
 </project>

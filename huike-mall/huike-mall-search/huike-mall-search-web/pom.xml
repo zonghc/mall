@@ -10,19 +10,175 @@
 	<artifactId>huike-mall-search-web</artifactId>
 	<packaging>war</packaging>
 	<dependencies>
+
+		<!-- Spring ioc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+		</dependency>
+
+		<!-- spring MVC 依赖包 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<!-- json 数据交互 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- log4j2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+		</dependency>
+
+		<!-- dubbo -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+
+		<!-- jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
+		<!-- servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
+		</dependency>
+
+		<!-- spring 单元测试组件包 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+
+		<!-- 单元测试Junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<!-- 项目间依赖 -->
+		<dependency>
+			<groupId>com.kkb.learn</groupId>
+			<artifactId>huike-mall-common-utils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.kkb.learn</groupId>
+			<artifactId>huike-mall-common-pojo</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.kkb.learn</groupId>
 			<artifactId>huike-mall-search-interface</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- 清理 -->
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+			</plugin>
+
+			<!-- 编译 -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<!-- 发布构件 -->
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+			</plugin>
+
+			<!-- 安装构件 -->
+			<plugin>
+				<artifactId>maven-install-plugin</artifactId>
+			</plugin>
+
+			<!-- 打包 -->
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+
+			<!-- 资源文件 -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+
+			<!-- 单元测试 -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+
+			<!-- tomcat7插件 
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<port>8182</port>
+					<path>/searchweb</path>
+				</configuration>
+			</plugin>
+			-->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>searchweb</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
