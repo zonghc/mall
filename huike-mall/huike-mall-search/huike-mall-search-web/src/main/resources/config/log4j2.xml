@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="TRACE" monitorinterval="300">
+	
+	<Properties>
+        <!-- 配置日志文件输出目录，此配置将日志输出到tomcat根目录下的指定文件夹 -->
+        <Property name="logDir">F:/logs/search-web</Property>
+    </Properties>
+
+	<Appenders>
+		<!-- 控制台日志 -->
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%-5p][%d{yyyyMMdd HHmmssSSS}][%t]%c{6}[%M-%L]%x%n%m%n" />
+		</Console>
+		
+		<!-- 最新日志 -->
+		<RollingFile name="last" append="false" fileName="${logDir}/last.log"
+			filePattern="${logDir}/last.log_%d{yyyyMMdd}_%i">
+			<ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="[%-5p][%d{yyyyMMdd HHmmssSSS}][%t]%c{6}[%M-%L]%x%n%m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		
+		<!-- 信息日志 -->
+		<RollingFile name="rollingInfo" append="true" fileName="${logDir}/rollingInfo.log"
+			filePattern="${logDir}/rollingInfo.log_%d{yyyyMMdd}_%i">
+			<ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="[%-5p][%d{yyyyMMdd HHmmssSSS}][%t]%c{6}[%M-%L]%x%n%m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		
+		<RollingFile name="rollingWarn" append="true" fileName="${logDir}/rollingWarn.log"
+			filePattern="${logDir}/rollingWarn.log_%d{yyyyMMdd}_%i">
+			<ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="[%-5p][%d{yyyyMMdd HHmmssSSS}][%t]%c{6}[%M-%L]%x%n%m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		
+		<RollingFile name="rollingError" append="true" fileName="${logDir}/rollingError.log"
+			filePattern="${logDir}/rollingError.log_%d{yyyyMMdd}_%i">
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="[%-5p][%d{yyyyMMdd HHmmssSSS}][%t]%c{6}[%M-%L]%x%n%m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		
+		<RollingFile name="rollingFatal" append="true" fileName="${logDir}/rollingFatal.log"
+			filePattern="${logDir}/rollingFatal.log_%d{yyyyMMdd}_%i">
+			<ThresholdFilter level="FATAL" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="[%-5p][%d{yyyyMMdd HHmmssSSS}][%t]%c{6}[%M-%L]%x%n%m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		
+		<RollingFile name="rollingOff" append="true" fileName="${logDir}/rollingOff.log"
+			filePattern="${logDir}/rollingOff.log_%d{yyyyMMdd}_%i">
+			<ThresholdFilter level="OFF" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="[%-5p][%d{yyyyMMdd HHmmssSSS}][%t]%c{6}[%M-%L]%x%n%m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		
+	</Appenders>
+	<Loggers>
+		<!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+		<logger name="org.springframework" level="INFO"></logger>
+		<logger name="org.mybatis" level="INFO"></logger>
+		<Root level="ALL">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="last" />
+			<AppenderRef ref="rollingInfo" />
+			<AppenderRef ref="rollingWarn" />
+			<AppenderRef ref="rollingError" />
+			<AppenderRef ref="rollingFatal" />
+			<AppenderRef ref="rollingOff" />
+		</Root>
+	</Loggers>
+</Configuration>
